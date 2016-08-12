@@ -6,3 +6,4 @@ version=`cat version/number`
 cd git-repo
 gradle assemble -Pversion=$version
 cp build/libs/*.war ../artifact-dir/
+ls ../artifact-dir
