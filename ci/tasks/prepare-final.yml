@@ -16,7 +16,7 @@ outputs:
   - name: final-dir
 
 run:
-  path: git-repo/ci/tasks/prepare-final.sh
+  path: git-repo/ci/scripts/prepare-final.sh
 
 params:
   base_name:

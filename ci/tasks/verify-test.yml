@@ -12,7 +12,7 @@ inputs:
   - name: git-repo
 
 run:
-  path: git-repo/ci/tasks/verify-test.sh
+  path: git-repo/ci/scripts/verify-test.sh
 
 params:
   CONCOURSE_DEMO_URL:

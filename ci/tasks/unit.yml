@@ -11,4 +11,4 @@ inputs:
   - name: git-repo
 
 run:
-  path: git-repo/ci/tasks/unit.sh
+  path: git-repo/ci/scripts/unit.sh
