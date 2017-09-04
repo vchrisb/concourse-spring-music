@@ -21,3 +21,4 @@ build/
 *.log*
 
 spring-music-pcfdev-credentials.yml
+spring-music-credentials.yml

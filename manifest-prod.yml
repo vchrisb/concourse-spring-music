@@ -2,5 +2,4 @@
 applications:
 - name: spring-music
   memory: 512M
-  instances: 1
-  host: bb-spring-music
+  instances: 2
