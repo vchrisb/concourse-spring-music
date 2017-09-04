@@ -4,11 +4,18 @@ platform: linux
 image_resource:
   type: docker-image
   source:
-    repository: brianbyers/concourse-gradle
-    tag: "latest"
+    repository: gradle
+    tag: "jdk8"
 
 inputs:
   - name: git-repo
 
 run:
-  path: git-repo/ci/scripts/unit.sh
+  user: root
+  dir: git-repo
+  path: sh
+  args:
+  - -exc
+  - |
+    gradle -v
+    gradle test

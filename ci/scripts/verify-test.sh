@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-set -e
+#!/usr/bin/env sh
+set -ex
 
 get_code="curl -I $CONCOURSE_DEMO_URL 2>/dev/null | head -n 1 | cut -d$' ' -f2"
 status_code=`eval $get_code`
