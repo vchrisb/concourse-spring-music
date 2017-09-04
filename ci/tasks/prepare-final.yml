@@ -20,7 +20,7 @@ run:
   args:
   - -exc
   - |
-  cp release-candidate/${base_name}*.war final-dir/${base_name}-$(cat version/number).war
+    cp release-candidate/${base_name}*.war final-dir/${base_name}-$(cat version/number).war
 
 params:
   base_name:
