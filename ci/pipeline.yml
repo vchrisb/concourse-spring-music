@@ -20,7 +20,7 @@ jobs:
       timeout: 5m
     - put: release-candidate
       params:
-        file: artifact-dir/spring-music*.war
+        file: artifact-dir/spring-music*.jar
     - put: git-repo
       params:
         repository: git-repo
@@ -43,7 +43,7 @@ jobs:
       params:
         manifest: git-repo/manifest-test.yml
         current_app_name: ((APP_NAME))-test
-        path: release-candidate/spring-music*.war
+        path: release-candidate/spring-music*.jar
     - task: verify
       file: git-repo/ci/tasks/verify-test.yml
       params:
@@ -64,7 +64,7 @@ jobs:
       params:
         manifest: git-repo/manifest-uat.yml
         current_app_name: ((APP_NAME))-uat
-        path: release-candidate/spring-music*.war
+        path: release-candidate/spring-music*.jar
 
   - name: ship-it
     serial_groups: [version]
@@ -84,12 +84,12 @@ jobs:
         base_name: spring-music
     - put: production-release
       params:
-        file: final-dir/spring-music*.war
+        file: final-dir/spring-music*.jar
     - put: deploy-production-app
       params:
         manifest: git-repo/manifest-prod.yml
         current_app_name: ((APP_NAME))
-        path: final-dir/spring-music*.war
+        path: final-dir/spring-music*.jar
 
   - name: major
     serial_groups: [ version ]
