@@ -11,19 +11,19 @@ import org.springframework.cloud.service.common.MysqlServiceInfo;
 import org.springframework.cloud.service.common.OracleServiceInfo;
 import org.springframework.cloud.service.common.PostgresqlServiceInfo;
 import org.springframework.cloud.service.common.RedisServiceInfo;
+import org.springframework.cloud.service.common.SqlServerServiceInfo;
 import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.util.StringUtils;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
 import java.util.*;
 
-public class SpringApplicationContextInitializer implements ApplicationContextInitializer<AnnotationConfigWebApplicationContext> {
+public class SpringApplicationContextInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
     private static final Log logger = LogFactory.getLog(SpringApplicationContextInitializer.class);
 
-    private static final Map<Class<? extends ServiceInfo>, String> serviceTypeToProfileName =
-            new HashMap<Class<? extends ServiceInfo>, String>();
+    private static final Map<Class<? extends ServiceInfo>, String> serviceTypeToProfileName = new HashMap<>();
     private static final List<String> validLocalProfiles = Arrays.asList("mysql", "postgres", "mongodb", "redis");
 
     public static final String IN_MEMORY_PROFILE = "in-memory";
@@ -34,10 +34,11 @@ public class SpringApplicationContextInitializer implements ApplicationContextIn
         serviceTypeToProfileName.put(MysqlServiceInfo.class, "mysql");
         serviceTypeToProfileName.put(RedisServiceInfo.class, "redis");
         serviceTypeToProfileName.put(OracleServiceInfo.class, "oracle");
+        serviceTypeToProfileName.put(SqlServerServiceInfo.class, "sqlserver");
     }
 
     @Override
-    public void initialize(AnnotationConfigWebApplicationContext applicationContext) {
+    public void initialize(ConfigurableApplicationContext applicationContext) {
         Cloud cloud = getCloud();
 
         ConfigurableEnvironment appEnvironment = applicationContext.getEnvironment();
@@ -60,7 +61,7 @@ public class SpringApplicationContextInitializer implements ApplicationContextIn
             return null;
         }
 
-        List<String> profiles = new ArrayList<String>();
+        List<String> profiles = new ArrayList<>();
 
         List<ServiceInfo> serviceInfos = cloud.getServiceInfos();
 
@@ -97,7 +98,7 @@ public class SpringApplicationContextInitializer implements ApplicationContextIn
     }
 
     private String[] getActiveProfile(ConfigurableEnvironment appEnvironment) {
-        List<String> serviceProfiles = new ArrayList<String>();
+        List<String> serviceProfiles = new ArrayList<>();
 
         for (String profile : appEnvironment.getActiveProfiles()) {
             if (validLocalProfiles.contains(profile)) {
