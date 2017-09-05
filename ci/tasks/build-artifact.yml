@@ -21,4 +21,6 @@ run:
   args:
   - -exc
   - |
-    gradle assemble -Pversion=$(cat version/number) -p git-repo -s artifact-dir
+    gradle assemble -Pversion=$(cat version/number) -p git-repo
+    cp git-repo/build/libs/*.war artifact-dir/
+    ls artifact-dir
