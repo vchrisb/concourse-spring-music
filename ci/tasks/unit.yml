@@ -12,10 +12,9 @@ inputs:
 
 run:
   user: root
-  dir: git-repo
   path: sh
   args:
   - -exc
   - |
     gradle -v
-    gradle test
+    gradle test -p git-repo
