@@ -48,6 +48,7 @@ jobs:
       file: git-repo/ci/tasks/verify-test.yml
       params:
         CONCOURSE_DEMO_URL: https://((APP_NAME))-test.((APP_DOMAIN))
+        SKIP_SSL_VALIDATION: ((SKIP_SSL_VALIDATION))
 
   - name: promote-to-uat
     serial_groups: [version]
