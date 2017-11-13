@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -ex
 
-if [ "$SKIP_SSL_VALIDATION" = true]
+if [ "$SKIP_SSL_VALIDATION" = true ]
 then
   get_code="curl -s -k -I $CONCOURSE_DEMO_URL | head -n 1 | cut -d$' ' -f2"
 else
